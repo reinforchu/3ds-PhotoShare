@@ -8,6 +8,7 @@ if(!empty($_FILES)){
 if($result){
   $MSG = 'Share SNS QR Codes.';
   $img_path = $uploaded_path;
+  $baseURI = 'https:/'.dirname($_SERVER['SCRIPT_NAME']);
 }else{
   $MSG = 'Error: '.$_FILES['upload_image']['error'];
 }
@@ -31,7 +32,7 @@ if($result){
   <?php
   require_once "./phpqrcode/qrlib.php";
   $filepath = './files/'.$md5Filename.'_x.png';
-  $contents = "twitter://post?message=\n\nhttps://rein.jp/3ds/card.php?{$md5Filename}";
+  $contents = "twitter://post?message=\n\n{$baseURI}/card.php?{$md5Filename}";
   QRcode::png($contents, $filepath, QR_ECLEVEL_M, 2);
   ?>
    <?php echo '<p>X (Twitter)</p>'; ?>
@@ -42,7 +43,7 @@ if($result){
   <?php
   require_once "./phpqrcode/qrlib.php";
   $filepath = './files/'.$md5Filename.'_b.png';
-  $contents = "bluesky://intent/compose?text=\n\nhttps://rein.jp/3ds/card.php?{$md5Filename}";
+  $contents = "bluesky://intent/compose?text=\n\n{$baseURI}/card.php?{$md5Filename}";
   QRcode::png($contents, $filepath, QR_ECLEVEL_M, 2);
   ?>
   <?php echo '<p>Bluesky</p>'; ?>

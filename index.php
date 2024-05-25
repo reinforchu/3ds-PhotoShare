@@ -6,7 +6,7 @@ if(!empty($_FILES)){
   $uploaded_path = './files/'.$md5Filename.'.JPG';
   $result = move_uploaded_file($_FILES['upload_image']['tmp_name'], $uploaded_path);
 if($result){
-  $MSG = 'Post Bluesky iOS App';
+  $MSG = 'Share SNS QR Codes.';
   $img_path = $uploaded_path;
 }else{
   $MSG = 'Error: '.$_FILES['upload_image']['error'];
@@ -23,17 +23,29 @@ if($result){
 </head>
 <body>
 
-<h3>3DS Photo share for Bluesky</h3>
+<h1>3DS Photo share</h1>
 
 <p><?php if(!empty($MSG)) echo $MSG;?></p>
 
 <?php if(!empty($img_path)){ ?>
   <?php
   require_once "./phpqrcode/qrlib.php";
-  $filepath = './files/'.$md5Filename.'.png';
-  $contents = "bluesky://intent/compose?text=\n\nhttps://rein.jp/3ds/bsky.php?{$md5Filename}";
+  $filepath = './files/'.$md5Filename.'_x.png';
+  $contents = "twitter://post?message=\n\nhttps://rein.jp/3ds/card.php?{$md5Filename}";
   QRcode::png($contents, $filepath, QR_ECLEVEL_M, 2);
   ?>
+   <?php echo '<p>X (Twitter)</p>'; ?>
+  <img src="<?php echo "{$filepath}"; ?>" alt="qr">
+<?php } ?>
+
+<?php if(!empty($img_path)){ ?>
+  <?php
+  require_once "./phpqrcode/qrlib.php";
+  $filepath = './files/'.$md5Filename.'_b.png';
+  $contents = "bluesky://intent/compose?text=\n\nhttps://rein.jp/3ds/card.php?{$md5Filename}";
+  QRcode::png($contents, $filepath, QR_ECLEVEL_M, 2);
+  ?>
+  <?php echo '<p>Bluesky</p>'; ?>
   <img src="<?php echo "{$filepath}"; ?>" alt="qr">
 <?php } ?>
 

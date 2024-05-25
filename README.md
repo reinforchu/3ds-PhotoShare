@@ -1,2 +1,2 @@
-# Bluesky-3ds-photo-share
- Share Nintendo 3DS images to Bluesky.
+# 3ds-PhotoShare
+ Share Nintendo 3DS images to X/Twitter and Bluesky.

@@ -8,7 +8,14 @@ $baseURI = 'https:/'.dirname($_SERVER['SCRIPT_NAME']);
 <html lang="en-US">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="no-cache, no-store">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="expires" content="0">
+    <meta name="author" content="reinforchu">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="3DS Photo share">
+    <meta name="keywords" content="3ds, sns, share, photo">
+    <meta name="robots" content="index, follow, noarchive">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@reinforchu">
     <meta name="twitter:title" content="3DS Photo share">

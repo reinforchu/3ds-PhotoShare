@@ -8,7 +8,7 @@ if(!empty($_FILES)){
   $imgResChk = false;
   if ($exif['COMPUTED']['Height'] === 240 && $exif['COMPUTED']['Width'] === 400) $imgResChk = true; // 3D screen
   if ($exif['COMPUTED']['Height'] === 240 && $exif['COMPUTED']['Width'] === 320) $imgResChk = true; // Touch screen
-  if ($exif['COMPUTED']['Height'] === 528 && $exif['COMPUTED']['Width'] === 432) $imgResChk = true; // Dual screen
+  if ($exif['COMPUTED']['Height'] === 528 && $exif['COMPUTED']['Width'] === 432) $imgResChk = true; // Double screen
   if (!$imgResChk) exit('Error: [4]Unsupport file.');
   if ($exif['IFD0']['Make'] !== 'Nintendo' || $exif['IFD0']['Model'] !== 'Nintendo 3DS') exit('Error: [5]Is not 3DS image file.');
   $filename = $_FILES['upload_image']['name'];
@@ -40,24 +40,22 @@ if($result){
     <title>3DS Photo share</title>
   </head>
   <body>
-  <h1>3DS Photo share</h1>
-  <p><?php if(!empty($message)) echo $message;?></p>
-  <?php if(!empty($img_path)){ ?>
+    <h1>3DS Photo share</h1>
+    <p><?php if(!empty($message)) echo $message; ?></p>
+    <?php if(!empty($img_path)) { ?>
     <?php
     require_once "./phpqrcode/qrlib.php";
     $filepath = './files/'.$md5Filename.'_x.png';
     $contents = "twitter://post?message=\n\n{$baseURI}/card.php?{$md5Filename}";
-    QRcode::png($contents, $filepath, QR_ECLEVEL_M, 4);
-    ?>
+    QRcode::png($contents, $filepath, QR_ECLEVEL_M, 4); ?>
     <?php echo '<p>X (Twitter)</p>'; ?>
     <img src="<?php echo "{$filepath}"; ?>" alt="qr"><?php } ?>
-  <?php if(!empty($img_path)){ ?>
+    <?php if(!empty($img_path)){ ?>
     <?php
     require_once "./phpqrcode/qrlib.php";
     $filepath = './files/'.$md5Filename.'_b.png';
     $contents = "bluesky://intent/compose?text=\n\n{$baseURI}/card.php?{$md5Filename}";
-    QRcode::png($contents, $filepath, QR_ECLEVEL_M, 4);
-    ?>
+    QRcode::png($contents, $filepath, QR_ECLEVEL_M, 4); ?>
     <?php echo '<p>Bluesky</p>'; ?>
     <img src="<?php echo "{$filepath}"; ?>" alt="qr"><?php } ?>
     <form action="" method="post" enctype="multipart/form-data">

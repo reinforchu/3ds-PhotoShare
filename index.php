@@ -1,5 +1,5 @@
 <?php
-// Init partical
+// Init particle
 $message = array();
 $imgResChk = false;
 $queryChk = false;
@@ -17,7 +17,7 @@ if (!empty($_SERVER['QUERY_STRING'])) {
     }
 }
 
-// Upload partical
+// Upload particle
 if (!empty($_FILES)) {
   $exif = exif_read_data($_FILES['upload_image']['tmp_name'], 0, true);
   if ($exif === FALSE) array_push($message, '[Error]File broken.');
@@ -38,7 +38,8 @@ if (!empty($_FILES)) {
     array_push($message, '[Critical]'.$_FILES['upload_image']['error']);
   }
 }
-// View partical
+
+// View particle
 ?><!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -49,7 +50,7 @@ if (!empty($_FILES)) {
     <meta name="author" content="reinforchu">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="3DS Photo share">
-    <meta name="keywords" content="3ds, sns, share, photo">
+    <meta name="keywords" content="3ds, sns, photo, share">
     <meta name="robots" content="index, follow, noarchive">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@reinforchu">
